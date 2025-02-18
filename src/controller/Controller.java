@@ -164,4 +164,19 @@ public class Controller {
         }
         return filteredList;
     }
+
+    /**
+     * Filters characters that have bought products from a specific universe (user input from view).
+     */
+    public List<model.Character> filterCharacterByProductUniverse(String universe) {
+        List<model.Character> filteredCustomers = new ArrayList<>();
+        for (model.Character character : charaktere) {
+            for (Product product : character.getProducts()) {
+                if (product.getUniverse().equals(universe)) {
+                    filteredCustomers.add(character);
+                }
+            }
+        }
+        return filteredCustomers;
+    }
 }

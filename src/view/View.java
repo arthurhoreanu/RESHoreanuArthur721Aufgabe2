@@ -33,8 +33,8 @@ public class View {
             System.out.println("9. Buy Product");
             System.out.println("");
 
-            // First filter
             System.out.println("10. Filter Characters by Region");
+            System.out.println("11. Filter Characters by product's universe");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -52,6 +52,7 @@ public class View {
                 case 9 -> buyProducts();
 
                 case 10 -> filterCharacterByUniverse();
+                case 11 -> filterCharacterByProductUniverse();
             }
         }
     }
@@ -170,9 +171,15 @@ public class View {
      * Filter character by their universe (user input).
      */
     private void filterCharacterByUniverse() {
-        System.out.println("Enter the character region");
+        System.out.println("Enter the character universe");
         String universe = scanner.nextLine();
         controller.filterCharactersByUniverse(universe).forEach(System.out::println);
+    }
+
+    private void filterCharacterByProductUniverse() {
+        System.out.println("Enter the product universe");
+        String universe = scanner.nextLine();
+        controller.filterCharacterByProductUniverse(universe).forEach(System.out::println);
     }
 
 }
