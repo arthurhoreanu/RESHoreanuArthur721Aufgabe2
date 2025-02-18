@@ -4,6 +4,7 @@ import model.*;
 import model.Character;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -178,5 +179,20 @@ public class Controller {
             }
         }
         return filteredCustomers;
+    }
+
+    public List<Product> sortCharactersProducts(int characterID, boolean ascending) {
+        for (Character character : charaktere) {
+            if (character.getId() == characterID) {
+                List<Product> sortedProducts = new ArrayList<>(character.getProducts());
+                if (ascending) {
+                    sortedProducts.sort(Comparator.comparing(Product::getPrice));
+                } else {
+                    sortedProducts.sort(Comparator.comparing(Product::getPrice).reversed());
+                }
+                return sortedProducts;
+            }
+        }
+        return new ArrayList<>();
     }
 }

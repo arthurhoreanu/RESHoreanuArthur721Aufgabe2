@@ -35,6 +35,7 @@ public class View {
 
             System.out.println("10. Filter Characters by Region");
             System.out.println("11. Filter Characters by product's universe");
+            System.out.println("12. Sort Products in ascending/descending order");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -53,6 +54,7 @@ public class View {
 
                 case 10 -> filterCharacterByUniverse();
                 case 11 -> filterCharacterByProductUniverse();
+                case 12 -> sortCharactersProducts();
             }
         }
     }
@@ -180,6 +182,16 @@ public class View {
         System.out.println("Enter the product universe");
         String universe = scanner.nextLine();
         controller.filterCharacterByProductUniverse(universe).forEach(System.out::println);
+    }
+
+    private void sortCharactersProducts() {
+        controller.getCharacterList().forEach(System.out::println);
+        System.out.println("Enter the character ID");
+        int characterID = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Sort ascending? (true/false)");
+        boolean ascending = scanner.nextBoolean();
+        controller.sortCharactersProducts(characterID, ascending).forEach(System.out::println);
     }
 
 }
