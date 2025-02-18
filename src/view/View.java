@@ -4,6 +4,8 @@ import model.Character;
 import model.Product;
 import controller.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class View {
@@ -29,6 +31,10 @@ public class View {
 
             // Helper „Buy” method
             System.out.println("9. Buy Product");
+            System.out.println("");
+
+            // First filter
+            System.out.println("10. Filter Characters by Region");
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
@@ -44,6 +50,8 @@ public class View {
                 case 7 -> updateCharacter();
                 case 8 -> deleteCharacter();
                 case 9 -> buyProducts();
+
+                case 10 -> filterCharacterByUniverse();
             }
         }
     }
@@ -155,7 +163,16 @@ public class View {
         scanner.nextLine();
         System.out.println("Enter the product name");
         String productName = scanner.nextLine();
-        controller.buyProducts(characterID, productName);
+        controller.kaufeProdukt(characterID, productName);
+    }
+
+    /**
+     * Filter character by their universe (user input).
+     */
+    private void filterCharacterByUniverse() {
+        System.out.println("Enter the character region");
+        String universe = scanner.nextLine();
+        controller.filterCharactersByUniverse(universe).forEach(System.out::println);
     }
 
 }
